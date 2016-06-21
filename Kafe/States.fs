@@ -1,6 +1,7 @@
 ﻿module States
 
 open Domain
+open Events
 open System
 
 type State =
@@ -10,6 +11,7 @@ type State =
 | OrderInProgress of InProgressOrder
 | ServedOrder of Order
 
-let apply state events =
-  match state, events with
-  | _ -> ClosedTab None
+let apply state event =
+  match state, event with
+  | ClosedTab _, TabOpened tab -> OpenedTab tab
+  | _ -> state
