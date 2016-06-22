@@ -46,8 +46,10 @@
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
     <Compile Include="KafeAppTestsDSL.fs" />
+    <Compile Include="TestData.fs" />
     <Compile Include="OpenTabTests.fs" />
     <Compile Include="PlaceOrderTests.fs" />
+    <Compile Include="ServeDrinkTests.fs" />
     <Compile Include="Program.fs" />
     <None Include="App.config" />
   </ItemGroup>
