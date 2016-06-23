@@ -8,11 +8,14 @@ type Error =
 | CanNotOrderWithClosedTab
 | OrderAlreadyPlaced
 | CanNotServeNonOrderedDrink of Drink
+| CanNotServeAlreadyServedDrink of Drink
 | OrderAlreadyServed
 | CanNotServeForNonPlacedOrder
 | CanNotServeWithClosedTab
 | CanNotPrepareNonOrderedFood of Food
+| CanNotPrepareAlreadyPreparedFood of Food
 | CanNotPrepareForNonPlacedOrder
 | CanNotPrepareWithClosedTab
-| CanNotServeAlreadyServedDrink of Drink
-| CanNotPrepareAlreadyPreparedFood of Food
+| CanNotServeNonPreparedFood of Food
+| CanNotServeNonOrderedFood of Food
+| CanNotServeAlreadyServedFood of Food

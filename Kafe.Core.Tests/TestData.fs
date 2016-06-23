@@ -33,6 +33,11 @@ let pizza = Food {
   Name = "Pizza"
   Price = 4.1m
 }
+let pecel = Food {
+  MenuNumber = 1
+  Name = "Pecel"
+  Price = 8.1m
+}
 
 let foodPrice (Food food) = food.Price
 let drinkPrice (Drink drink) = drink.Price

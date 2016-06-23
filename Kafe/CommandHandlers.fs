@@ -83,12 +83,38 @@ let handlePrepareFood food tabId = function
   | _ -> [FoodPrepared (food, tabId)] |> ok
 | _ -> failwith "Why?"
 
+let (|UnPreparedFood|_|) ipo food =
+  match List.contains food ipo.PreparedFoods with
+  | false -> Some food
+  | true -> None
+
+let (|AlreadyServedFood|_|) ipo food =
+  match List.contains food ipo.ServedFoods with
+  | true -> Some food
+  | false -> None
+
+let handleServeFood food tabId = function
+| OrderInProgress ipo -> //[FoodServed (food, tabId)] |> ok
+  let order = ipo.PlacedOrder
+  let foodServed = FoodServed (food, tabId)
+  match food with
+  | NonOrderedFood order _ -> CanNotServeNonOrderedFood food |> fail
+  | AlreadyServedFood ipo _ -> CanNotServeAlreadyServedFood food |> fail
+  | UnPreparedFood ipo _ -> CanNotServeNonPreparedFood food |> fail
+  | _ -> [foodServed] |> ok
+| ServedOrder _ -> OrderAlreadyServed |> fail
+| PlacedOrder _ -> CanNotServeNonPreparedFood food |> fail
+| OpenedTab _ -> CanNotServeForNonPlacedOrder |> fail
+| ClosedTab _ -> CanNotServeWithClosedTab |> fail
+| _ -> failwith "Why?"
+
 let execute state command =
   match command with
   | OpenTab tab -> handleOpenTab tab state
   | PlaceOrder order -> handlePlaceOrder order state
   | ServeDrink (drink, tabId) -> handleServeDrink drink tabId state
   | PrepareFood (food, tabId) -> handlePrepareFood food tabId state
+  | ServeFood (food, tabId) -> handleServeFood food tabId state
   | _ -> failwith "Todo"
 
 let evolve state command =
