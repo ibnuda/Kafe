@@ -35,3 +35,8 @@ let getState storeEvents tabId =
   getEvents storeEvents tabId
   |> Seq.fold apply (ClosedTab None)
   |> async.Return
+
+type EvenStore = {
+  GetState : Guid -> Async<State>
+  SaveEvent : State -> Event -> Async<unit>
+}
