@@ -22,7 +22,7 @@ type Error =
 | InvalidPayment of decimal * decimal
 | CanNotPayForNonServerOrder
 
-let errorToString = function
+let toErrorString = function
 | TabAlreadyOpened -> "Tab already opened."
 | CanNotPlaceEmptyOrder -> "Can not place empty order."
 | CanNotOrderWithClosedTab -> "Can not order with closed tab."

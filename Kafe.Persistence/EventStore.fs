@@ -11,6 +11,7 @@ let getTabIdFromState = function
 | PlacedOrder order -> Some order.Tab.Id
 | OrderInProgress order -> Some order.PlacedOrder.Tab.Id
 | ServedOrder order -> Some order.Tab.Id
+| ClosedTab (Some tab) -> Some tab
 
 let saveEvent (storeEvents : IStoreEvents) state event =
   match getTabIdFromState state with
@@ -36,7 +37,7 @@ let getState storeEvents tabId =
   |> Seq.fold apply (ClosedTab None)
   |> async.Return
 
-type EvenStore = {
+type EventStore = {
   GetState : Guid -> Async<State>
-  SaveEvent : State -> Event -> Async<unit>
+  SaveEvent : State -> Event list -> Async<unit>
 }
