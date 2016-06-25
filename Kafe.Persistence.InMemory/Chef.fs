@@ -34,3 +34,8 @@ let chefActions = {
   RemoveFood = removeFood
   Remove = remove
 }
+
+let getChefToDo () =
+  chefToDos.Values
+  |> Seq.toList
+  |> async.Return
