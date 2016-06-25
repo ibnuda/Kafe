@@ -7,7 +7,7 @@ open System
 type TableActions = {
   OpenTab : Tab -> Async<unit>
   ReceivedOrder : Guid -> Async<unit>
-  CloseTab : Guid -> Async<unit>
+  CloseTab : Tab -> Async<unit>
 }
 
 type ChefActions = {
@@ -61,6 +61,6 @@ let projectReadModel actions = function
 | TabClosed payment -> 
   [
     actions.Cashier.Remove payment.Tab.Id
-    actions.Table.CloseTab payment.Tab.Id
+    actions.Table.CloseTab payment.Tab
   ] |> Async.Parallel
 | _ -> failwith "Why?"
