@@ -34,7 +34,7 @@ let handleCommand eventStore commandData commander = async {
     let! state = eventStore.GetState (getTabIdFromCommand command)
     match evolve state command with
     | Ok((newState, events), _) -> return (newState, events) |> ok
-    | Bad (error) -> return error.Head |> toErrorString |> fail
+    | Bad (error) -> return error.Head |> toErrorString |> messageError |> fail
   | Choice2Of2 errorMessage ->
-    return errorMessage |> fail
+    return errorMessage |> messageError |> fail
 }

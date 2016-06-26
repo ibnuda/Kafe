@@ -11,7 +11,7 @@ open Table
 let private chefToDos = new Dictionary<Guid, ChefToDo>()
 
 let private addFoodsToPrepare tabId foods =
-  match getTableById tabId with
+  match getTableByTabId tabId with
   | Some table ->
     let tab = {Id = tabId; TableNumber = table.Number}
     let toDo : ChefToDo = {Tab = tab; Foods = foods}

@@ -9,7 +9,7 @@ open Table
 let private waiterToDos = new Dictionary<Guid, WaiterToDo>()
 
 let private addDrinkToServe tabId drinks =
-  match getTableById tabId with
+  match getTableByTabId tabId with
   | Some table ->
     let toDo = {
       Tab = {Id = tabId; TableNumber = table.Number}
@@ -27,7 +27,7 @@ let private addFoodToServe tabId foods =
       {toDo with Foods = foods :: toDo.Foods}
     waiterToDos.[tabId] <- waiterToDo
   else
-    match getTableById tabId with
+    match getTableByTabId tabId with
     | Some table ->
       let toDo = {
         Tab = {Id = tabId; TableNumber = table.Number}

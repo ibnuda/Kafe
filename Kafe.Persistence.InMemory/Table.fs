@@ -25,7 +25,7 @@ let private closeTab tab =
   tables.[tableNumber] <- {table with Status = Closed}
   async.Return ()
 
-let getTableById tabId =
+let getTableByTabId tabId =
   tables.Values
   |> Seq.tryFind(
     fun t ->
@@ -33,9 +33,14 @@ let getTableById tabId =
       | (Open id) | (InService id) -> id = tabId
       | _ -> false
   )
+let getTableByTableNumber tableNumber =
+  if tables.ContainsKey tableNumber then
+    tables.[tableNumber] |> Some |> async.Return
+  else
+    None |> async.Return
 
 let private receiveOrder tabId =
-  match getTableById tabId with
+  match getTableByTabId tabId with
   | Some table ->
     let tableNumber = table.Number
     tables.[tableNumber] <- {table with Status = InService(tabId)}
@@ -55,4 +60,5 @@ let getTables () =
 
 let tableQueries = {
   GetTables = getTables
+  GetTableByTableNumber = getTableByTableNumber
 }

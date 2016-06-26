@@ -9,7 +9,7 @@ open Table
 let private cashierToDos = new Dictionary<Guid, Payment>()
 
 let private addTabAmount tabId amount =
-  match getTableById tabId with
+  match getTableByTabId tabId with
   | Some table ->
     let payment = {Tab = { Id = tabId; TableNumber = table.Number}; Amount = amount}
     cashierToDos.Add(tabId, payment)
