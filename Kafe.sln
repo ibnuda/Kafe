@@ -13,6 +13,8 @@ Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Kafe.Persistence.InMemory",
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Kafe.Commands.Api", "Kafe.Commands.Api\Kafe.Commands.Api.fsproj", "{E929FACE-C67C-439F-8477-124E6AE08244}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Kafe.Web", "Kafe.Web\Kafe.Web.fsproj", "{D952DD41-E136-453A-A1BF-F7727706C1A5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{E929FACE-C67C-439F-8477-124E6AE08244}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E929FACE-C67C-439F-8477-124E6AE08244}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E929FACE-C67C-439F-8477-124E6AE08244}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D952DD41-E136-453A-A1BF-F7727706C1A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D952DD41-E136-453A-A1BF-F7727706C1A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D952DD41-E136-453A-A1BF-F7727706C1A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D952DD41-E136-453A-A1BF-F7727706C1A5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

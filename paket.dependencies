@@ -5,3 +5,4 @@ nuget FsUnit
 nuget NEventStore
 nuget NUnit
 nuget NUnit.Runners
+nuget Suave
