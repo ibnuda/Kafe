@@ -49,6 +49,9 @@
     <Compile Include="OpenTab.fs" />
     <Compile Include="PlaceOrder.fs" />
     <Compile Include="ServeDrink.fs" />
+    <Compile Include="PrepareFood.fs" />
+    <Compile Include="ServeFood.fs" />
+    <Compile Include="CloseTab.fs" />
     <Compile Include="CommandApi.fs" />
     <Compile Include="Program.fs" />
     <None Include="App.config" />

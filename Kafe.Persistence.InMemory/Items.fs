@@ -78,7 +78,7 @@ let getDrinks () =
 
 let foodQueries = {
 //   GetFoods = getFoods
-//  GetFoodByMenuNumber = getFoodByMenuNumber
+  GetFoodByMenuNumber = getFoodByMenuNumber
   GetFoodsByMenuNumbers = getFoodsByMenuNumbers
 }
 
