@@ -3,6 +3,7 @@ nuget Chessie
 nuget FSharp.Data
 nuget FsUnit
 nuget NEventStore
+nuget Newtonsoft.Json
 nuget NUnit
 nuget NUnit.Runners
 nuget Suave

@@ -12,6 +12,8 @@ open Projections
 open InMemory
 open System.Text
 open Chessie.ErrorHandling
+open JsonFormatter
+open QueriesApi
 
 let eventStream = new Control.Event<Event list>()
 
@@ -27,8 +29,8 @@ let commandApiHandler eventStore (context : HttpContext) = async {
   match response with
   | Ok ((state, events), _) ->
     do! eventStore.SaveEvents state events
-    return! OK (sprintf "%A" state) context
-  | Bad (err) -> return! BAD_REQUEST err.Head.Message context
+    return! toStateJson state context
+  | Bad (err) -> return! toErrorJson err.Head context
 }
 
 let commandApi eventStore =
@@ -42,6 +44,7 @@ let main argv =
     let eventStore = inMemoryEventStore ()
     choose [
       commandApi eventStore
+      queriesApi inMemoryQueries eventStore
     ]
   let config = {defaultConfig with bindings = [HttpBinding.mkSimple HTTP "127.0.0.1" 8083]}
   startWebServer config app
