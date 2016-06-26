@@ -6,16 +6,28 @@ open Suave.Successful
 open Suave.RequestErrors
 open Suave.Operators
 open Suave.Filters
+open Events
 open CommandApi
+open Projections
 open InMemory
 open System.Text
 open Chessie.ErrorHandling
+
+let eventStream = new Control.Event<Event list>()
+
+let project event =
+  projectReadModel inMemoryActions event
+  |> Async.RunSynchronously |> ignore
+
+let projectEvents = List.iter project
 
 let commandApiHandler eventStore (context : HttpContext) = async {
   let payload = Encoding.UTF8.GetString context.request.rawForm
   let! response = handleCommandRequest inMemoryQueries eventStore payload
   match response with
-  | Ok ((state, events), _) -> return! OK (sprintf "%A" state) context
+  | Ok ((state, events), _) ->
+    do! eventStore.SaveEvents state events
+    return! OK (sprintf "%A" state) context
   | Bad (err) -> return! BAD_REQUEST err.Head.Message context
 }
 

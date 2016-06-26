@@ -19,7 +19,7 @@ let inMemoryEventStore () =
   let eventStoreInstance = InMemoryEventStore.Instance
   {
     GetState = getState eventStoreInstance
-    SaveEvent = saveEvents eventStoreInstance
+    SaveEvents = saveEvents eventStoreInstance
   }
 
 let toDoQueries = {
@@ -31,6 +31,8 @@ let toDoQueries = {
 let inMemoryQueries = {
   Table = tableQueries
   ToDo = toDoQueries
+  Food = foodQueries
+  Drink = drinkQueries
 }
 
 let inMemoryActions = {

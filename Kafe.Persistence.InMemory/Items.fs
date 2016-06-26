@@ -54,7 +54,7 @@ let private getItems<'a> (dict : Dictionary<int, 'a>) keys =
 
 let getItem<'a> (dict : Dictionary<int, 'a>) key =
   if dict.ContainsKey key then
-    dict.Keys |> Some
+    dict.[key] |> Some
   else
     None
 
@@ -76,16 +76,14 @@ let getFoods () =
 let getDrinks () =
   drinks.Values |> Seq.toList |> async.Return
 
-(*
-let foodQUeries = {
-  GetFoods = getFoods
-  GetFoodByMenuNumber = getFoodByMenuNumber
+let foodQueries = {
+//   GetFoods = getFoods
+//  GetFoodByMenuNumber = getFoodByMenuNumber
   GetFoodsByMenuNumbers = getFoodsByMenuNumbers
 }
 
-let drinkQUeries = {
-  GetFoods = getDrinks
-  getDrinkByMenuNumber = getDrinkByMenuNumber
+let drinkQueries = {
+//  GetFoods = getDrinks
+  GetDrinkByMenuNumber = getDrinkByMenuNumber
   GetDrinksByMenuNumbers = getDrinksByMenuNumbers
 }
-*)
