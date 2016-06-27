@@ -15,6 +15,7 @@ open System.Text
 open Chessie.ErrorHandling
 open JsonFormatter
 open QueriesApi
+open Suave.Sockets.Control
 
 let eventsStream = new Control.Event<Event list>()
 
@@ -39,7 +40,7 @@ let commandApi eventStore =
   >=> POST
   >=> commandApiHandler eventStore
 
-let socketHandler (ws : WebSocket) context = async {
+let socketHandler (ws : WebSocket) context = socket {
   while true do
     let! events =
       Control.Async.AwaitEvent(eventsStream.Publish)
@@ -54,6 +55,7 @@ let main argv =
   let app =
     let eventStore = inMemoryEventStore ()
     choose [
+      path "/websocket" >=> handShake socketHandler
       commandApi eventStore
       queriesApi inMemoryQueries eventStore
     ]
