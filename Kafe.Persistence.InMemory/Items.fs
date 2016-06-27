@@ -77,13 +77,13 @@ let getDrinks () =
   drinks.Values |> Seq.toList |> async.Return
 
 let foodQueries = {
-//   GetFoods = getFoods
+  GetFoods = getFoods
   GetFoodByMenuNumber = getFoodByMenuNumber
   GetFoodsByMenuNumbers = getFoodsByMenuNumbers
 }
 
 let drinkQueries = {
-//  GetFoods = getDrinks
+  GetDrinks = getDrinks
   GetDrinkByMenuNumber = getDrinkByMenuNumber
   GetDrinksByMenuNumbers = getDrinksByMenuNumbers
 }

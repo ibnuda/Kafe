@@ -2,6 +2,7 @@
 
 open Suave
 open Suave.Web
+open Suave.WebSocket
 open Suave.Successful
 open Suave.RequestErrors
 open Suave.Operators
@@ -15,7 +16,7 @@ open Chessie.ErrorHandling
 open JsonFormatter
 open QueriesApi
 
-let eventStream = new Control.Event<Event list>()
+let eventsStream = new Control.Event<Event list>()
 
 let project event =
   projectReadModel inMemoryActions event
@@ -37,6 +38,16 @@ let commandApi eventStore =
   path "/command"
   >=> POST
   >=> commandApiHandler eventStore
+
+let socketHandler (ws : WebSocket) context = async {
+  while true do
+    let! events =
+      Control.Async.AwaitEvent(eventsStream.Publish)
+      |> Suave.Sockets.SocketOp.ofAsync
+    for event in events do
+      let eventData = event |> eventJObj |> string |> Encoding.UTF8.GetBytes
+      do! ws.send Text eventData true
+}
 
 [<EntryPoint>]
 let main argv = 
