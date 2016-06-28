@@ -6,4 +6,5 @@ nuget NEventStore
 nuget Newtonsoft.Json
 nuget NUnit
 nuget NUnit.Runners
+nuget SQLProvider
 nuget Suave

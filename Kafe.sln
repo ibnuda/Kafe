@@ -15,6 +15,8 @@ Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Kafe.Commands.Api", "Kafe.C
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Kafe.Web", "Kafe.Web\Kafe.Web.fsproj", "{D952DD41-E136-453A-A1BF-F7727706C1A5}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Kafe.Persistence.Postgres", "Kafe.Persistence.Postgres\Kafe.Persistence.Postgres.fsproj", "{304B4C22-0192-4CA4-B04D-25208E34C459}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{D952DD41-E136-453A-A1BF-F7727706C1A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D952DD41-E136-453A-A1BF-F7727706C1A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D952DD41-E136-453A-A1BF-F7727706C1A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{304B4C22-0192-4CA4-B04D-25208E34C459}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{304B4C22-0192-4CA4-B04D-25208E34C459}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{304B4C22-0192-4CA4-B04D-25208E34C459}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{304B4C22-0192-4CA4-B04D-25208E34C459}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
